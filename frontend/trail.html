@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TirthaYatra | Study Tools</title>
+    <style>
+        :root {
+            --dark-green: #283618;
+            --sage-green: #606c38;
+            --beige: #fefae0;
+            --light-beige: #f8f4e3;
+            --accent: #bc6c25;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--beige);
+            color: var(--dark-green);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            color: var(--dark-green);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--sage-green);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .tool-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tool-header {
+            background-color: var(--sage-green);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .tool-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            background-color: var(--light-beige);
+        }
+        
+        .tool-btn {
+            display: inline-block;
+            background-color: var(--dark-green);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .tool-btn:hover {
+            background-color: var(--accent);
+        }
+        
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--beige);
+        }
+        
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TirthaYatra Study Tools</h1>
+            <p class="subtitle">Navigate your academic journey with our powerful planning tools</p>
+        </header>
+        
+        <div class="tools-grid">
+            <!-- Roadmap Card -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h2>Study Roadmap</h2>
+                </div>
+                <div class="tool-content">
+                    <p>Create a structured study plan with timelines. Set durations for each topic, schedule breaks, and track your progress through your academic journey.</p>
+                    <button class="tool-btn">Create Roadmap</button>
+                </div>
+            </div>
+            
+            <!-- Journey Map Card -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h2>Topic Journey Map</h2>
+                </div>
+                <div class="tool-content">
+                    <p>Visualize the learning path of any topic. See how concepts connect and evolve, helping you understand the complete journey of your subject matter.</p>
+                    <button class="tool-btn">Map Your Journey</button>
+                </div>
+            </div>
+            
+            <!-- Mindmap Card -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h2>Concept Mindmap</h2>
+                </div>
+                <div class="tool-content">
+                    <p>Generate interactive mindmaps that show relationships between ideas. Perfect for visual learners to see how concepts interconnect within a subject.</p>
+                    <button class="tool-btn">Build Mindmap</button>
+                </div>
+            </div>
+            
+            <!-- Planner Card -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h2>Study Planner</h2>
+                </div>
+                <div class="tool-content">
+                    <p>Comprehensive planning tool to organize your study schedule. Set goals, allocate time slots, and receive reminders to keep your studies on track.</p>
+                    <button class="tool-btn">Open Planner</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

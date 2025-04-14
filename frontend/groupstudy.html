@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TirthaYatra - Find Study Partners</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --dark-green: #0f2a1f;
+            --sage-green: #8a9b6e;
+            --light-sage: #b8c4a4;
+            --beige: #f5f5dc;
+            --light-beige: #fafaf5;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-beige);
+            color: var(--dark-green);
+            line-height: 1.6;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--dark-green) 0%, #1a3e2d 100%);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sage-green), var(--light-sage));
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        
+        h2 {
+            color: var(--dark-green);
+            position: relative;
+            padding-bottom: 1rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--sage-green), transparent);
+            border-radius: 3px;
+        }
+        
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .course-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .course-header {
+            background: linear-gradient(135deg, var(--sage-green) 0%, var(--light-sage) 100%);
+            color: var(--white);
+            padding: 1.25rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+            letter-spacing: -0.2px;
+        }
+        
+        .course-body {
+            padding: 1.75rem;
+        }
+        
+        .course-description {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .active-users-title {
+            font-size: 0.9rem;
+            color: var(--sage-green);
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .active-users-title i {
+            margin-right: 0.5rem;
+        }
+        
+        .active-users {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .user-bubble {
+            background-color: var(--beige);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .user-bubble:hover {
+            background-color: #e8e8d0;
+            transform: translateY(-2px);
+        }
+        
+        .user-bubble::before {
+            content: "•";
+            color: var(--sage-green);
+            margin-right: 0.5rem;
+            font-size: 1.4rem;
+            line-height: 0;
+        }
+        
+        .join-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--dark-green) 0%, #1a3e2d 100%);
+            color: var(--white);
+            border: none;
+            padding: 0.9rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+        
+        .join-btn:hover {
+            background: linear-gradient(135deg, #0a1f15 0%, #0f2a1f 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(10, 31, 21, 0.2);
+        }
+        
+        .join-btn i {
+            margin-left: 0.5rem;
+        }
+        
+        .search-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+        }
+        
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--sage-green);
+            box-shadow: 0 0 0 3px rgba(138, 155, 110, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--sage-green);
+            font-size: 1.2rem;
+        }
+        
+        /* User Profile Modal */
+        .profile-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .profile-modal.active {
+            display: flex;
+        }
+        
+        .profile-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transform: scale(0.95);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .profile-modal.active .profile-card {
+            transform: scale(1);
+        }
+        
+        .profile-header {
+            background: linear-gradient(135deg, var(--sage-green) 0%, var(--light-sage) 100%);
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--white);
+            margin: 0 auto 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: var(--sage-green);
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+        
+        .profile-course {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-body {
+            padding: 1.5rem;
+        }
+        
+        .profile-detail {
+            margin-bottom: 1rem;
+        }
+        
+        .detail-label {
+            font-size: 0.8rem;
+            color: var(--sage-green);
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+        
+        .detail-value {
+            font-size: 0.95rem;
+            color: #444;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        
+        .close-modal:hover {
+            opacity: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--beige);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--dark-green);
+            transition: all 0.2s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--sage-green);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>TirthaYatra Collab</h1>
+        <p class="tagline">Connect with peers for collaborative learning</p>
+    </header>
+    
+    <div class="container">
+        <h2>Find Study Partners</h2>
+        
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-bar" placeholder="Search for courses...">
+        </div>
+        
+        <div class="course-grid">
+            <!-- Calculus Card -->
+            <div class="course-card">
+                <div class="course-header">Calculus</div>
+                <div class="course-body">
+                    <p class="course-description">Master differential and integral calculus through collaborative learning.</p>
+                    
+                    <div class="active-users-title">
+                        <i class="fas fa-users"></i>
+                        <span>Active study partners</span>
+                    </div>
+                    <div class="active-users">
+                        <div class="user-bubble" onclick="showProfile('Alex Wong', 'Calculus', 'alex.wong@university.edu', 'Junior', 'Mathematics', 'I love solving complex problems and explaining concepts visually.')">Alex</div>
+                        <div class="user-bubble" onclick="showProfile('Sam Rivera', 'Calculus', 'sam.rivera@university.edu', 'Sophomore', 'Engineering', 'Looking for study buddies to work through practice problems together.')">Sam</div>
+                        <div class="user-bubble" onclick="showProfile('Jordan Lee', 'Calculus', 'jordan.lee@university.edu', 'Senior', 'Physics', 'Prefer small study groups (2-3 people) for focused sessions.')">Jordan</div>
+                        <div class="user-bubble">+3 more</div>
+                    </div>
+                    <button class="join-btn">Join Calculus Group <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- Linear Algebra Card -->
+            <div class="course-card">
+                <div class="course-header">Linear Algebra</div>
+                <div class="course-body">
+                    <p class="course-description">Understand vectors, matrices and linear transformations together.</p>
+                    
+                    <div class="active-users-title">
+                        <i class="fas fa-users"></i>
+                        <span>Active study partners</span>
+                    </div>
+                    <div class="active-users">
+                        <div class="user-bubble" onclick="showProfile('Taylor Chen', 'Linear Algebra', 'taylor.chen@university.edu', 'Freshman', 'Computer Science', 'New to linear algebra but excited to learn through collaboration.')">Taylor</div>
+                        <div class="user-bubble" onclick="showProfile('Morgan Kim', 'Linear Algebra', 'morgan.kim@university.edu', 'Junior', 'Data Science', 'I can help explain abstract concepts with real-world examples.')">Morgan</div>
+                    </div>
+                    <button class="join-btn">Join Linear Algebra Group <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- Data Structures Card -->
+            <div class="course-card">
+                <div class="course-header">Data Structures</div>
+                <div class="course-body">
+                    <p class="course-description">Learn algorithms and data organization through peer programming.</p>
+                    
+                    <div class="active-users-title">
+                        <i class="fas fa-users"></i>
+                        <span>Active study partners</span>
+                    </div>
+                    <div class="active-users">
+                        <div class="user-bubble" onclick="showProfile('Casey Smith', 'Data Structures', 'casey.smith@university.edu', 'Sophomore', 'Computer Science', 'Looking for coding partners to implement data structures together.')">Casey</div>
+                        <div class="user-bubble" onclick="showProfile('Jamie Patel', 'Data Structures', 'jamie.patel@university.edu', 'Junior', 'Software Engineering', 'Prefer pair programming sessions with whiteboarding.')">Jamie</div>
+                        <div class="user-bubble" onclick="showProfile('Riley Johnson', 'Data Structures', 'riley.johnson@university.edu', 'Senior', 'Computer Engineering', 'Can help with algorithm optimization techniques.')">Riley</div>
+                        <div class="user-bubble">+5 more</div>
+                    </div>
+                    <button class="join-btn">Join Data Structures Group <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- Organic Chemistry Card -->
+            <div class="course-card">
+                <div class="course-header">Organic Chemistry</div>
+                <div class="course-body">
+                    <p class="course-description">Study carbon compounds and reactions with lab partners.</p>
+                    
+                    <div class="active-users-title">
+                        <i class="fas fa-users"></i>
+                        <span>Active study partners</span>
+                    </div>
+                    <div class="active-users">
+                        <div class="user-bubble" onclick="showProfile('Drew Wilson', 'Organic Chemistry', 'drew.wilson@university.edu', 'Junior', 'Biochemistry', 'Great at creating study guides and mnemonics for reactions.')">Drew</div>
+                    </div>
+                    <button class="join-btn">Join Organic Chemistry Group <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- Microeconomics Card -->
+            <div class="course-card">
+                <div class="course-header">Microeconomics</div>
+                <div class="course-body">
+                    <p class="course-description">Analyze individual economic decisions in study groups.</p>
+                    
+                    <div class="active-users-title">
+                        <i class="fas fa-users"></i>
+                        <span>Active study partners</span>
+                    </div>
+                    <div class="active-users">
+                        <div class="user-bubble" onclick="showProfile('Pat Davis', 'Microeconomics', 'pat.davis@university.edu', 'Sophomore', 'Business', 'Enjoy discussing real-world applications of economic theories.')">Pat</div>
+                        <div class="user-bubble" onclick="showProfile('Quinn Brown', 'Microeconomics', 'quinn.brown@university.edu', 'Freshman', 'Economics', 'Looking for study partners for weekly problem sets.')">Quinn</div>
+                        <div class="user-bubble">+2 more</div>
+                    </div>
+                    <button class="join-btn">Join Microeconomics Group <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- Physics Card -->
+            <div class="course-card">
+                <div class="course-header">Physics</div>
+                <div class="course-body">
+                    <p class="course-description">Explore matter, motion, and energy principles collaboratively.</p>
+                    
+                    <div class="active-users-title">
+                        <i class="fas fa-users"></i>
+                        <span>Active study partners</span>
+                    </div>
+                    <div class="active-users">
+                        <div class="user-bubble" onclick="showProfile('Sky Martinez', 'Physics', 'sky.martinez@university.edu', 'Junior', 'Astrophysics', 'Can help visualize complex physics concepts.')">Sky</div>
+                        <div class="user-bubble" onclick="showProfile('Brook Thompson', 'Physics', 'brook.thompson@university.edu', 'Senior', 'Mechanical Engineering', 'Specializing in thermodynamics and fluid mechanics.')">Brook</div>
+                    </div>
+                    <button class="join-btn">Join Physics Group <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- User Profile Modal -->
+    <div class="profile-modal" id="profileModal">
+        <div class="profile-card">
+            <div class="profile-header">
+                <button class="close-modal" onclick="closeProfile()">&times;</button>
+                <div class="profile-avatar" id="profileAvatar">A</div>
+                <h3 class="profile-name" id="profileName">Alex Wong</h3>
+                <div class="profile-course" id="profileCourse">Calculus</div>
+            </div>
+            <div class="profile-body">
+                <div class="profile-detail">
+                    <span class="detail-label">Email</span>
+                    <span class="detail-value" id="profileEmail">alex.wong@university.edu</span>
+                </div>
+                <div class="profile-detail">
+                    <span class="detail-label">Year</span>
+                    <span class="detail-value" id="profileYear">Junior</span>
+                </div>
+                <div class="profile-detail">
+                    <span class="detail-label">Major</span>
+                    <span class="detail-value" id="profileMajor">Mathematics</span>
+                </div>
+                <div class="profile-detail">
+                    <span class="detail-label">Study Preferences</span>
+                    <span class="detail-value" id="profileBio">I love solving complex problems and explaining concepts visually.</span>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showProfile(name, course, email, year, major, bio) {
+            const modal = document.getElementById('profileModal');
+            document.getElementById('profileName').textContent = name;
+            document.getElementById('profileCourse').textContent = course;
+            document.getElementById('profileEmail').textContent = email;
+            document.getElementById('profileYear').textContent = year;
+            document.getElementById('profileMajor').textContent = major;
+            document.getElementById('profileBio').textContent = bio;
+            
+            // Set avatar initial
+            document.getElementById('profileAvatar').textContent = name.charAt(0);
+            
+            modal.classList.add('active');
+        }
+        
+        function closeProfile() {
+            document.getElementById('profileModal').classList.remove('active');
+        }
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('profileModal');
+            if (event.target === modal) {
+                closeProfile();
+            }
+        });
+    </script>
+</body>
+</html>

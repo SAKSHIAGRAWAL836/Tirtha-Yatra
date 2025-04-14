@@ -1,10 +1,22 @@
-# Tirtha-Yatra
-From assignment anxiety to placement peace, from 8 a.m. lectures to midnight meltdowns:TirthaYatra walks with you through the chaos, the crash, and the comeback.
+🌟 Project Overview: TirthaYatra – Your College Life Companion
+🎯 Goal: Simplify and support every aspect of student life through one unified platform.
+📱 Platform: A mobile-first, student-centric app for managing academics, wellbeing, and beyond.
+🔄 Inspiration: From assignment anxiety to placement peace — we guide students through the chaos, the crash, and the comeback.
 
-TirthaYatra is your personalized, mobile-first tech companion crafted to elevate every facet of the student journey. Whether you’re battling deadlines, feeling the weight of mental burnout, getting lost on campus, budgeting your mess bill, or prepping for placements—TirthaYatra brings it all under one digital roof.
+🧭 Key Features:
+📚 Personalized Study Tools
+🧘 Mental Wellness Support
+🏫 Campus Navigation
+🤝 Peer and Club Networking
+💵 Financial Health Tracking
+🚀 Career Preparation
 
-No more juggling five different apps for five different problems. This is your one-stop app for:
+🔧 Tech Note: This version includes only the frontend. Backend services and APIs are hosted via Vercel.
+👥 Built by students, for students — because college isn’t just about earning a degree; it’s about surviving and thriving through the journey.
+🗺 “So pack your bags, we coded the map. Welcome to the TirthaYatra.”
 
-Personalized Study Tools Mental Wellness Support Campus Navigation Peer and Club Networking Financial Health Tracking Career Preparation
-
-Built by students, for students — because we get it. College isn’t just a degree. It’s a whole journey. So pack your bags, we coded the map. Welcome to the TirthaYatra.
+💻 Tech Stack:
+Frontend: HTML, CSS, JavaScript
+Backend: Vercel (serverless deployment)
+APIs: OpenAI, Google Maps.
+Tools: GitHub, Canva, Vercel
